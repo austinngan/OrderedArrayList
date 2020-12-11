@@ -8,4 +8,10 @@ public class NoNullArrayList<T> extends ArrayList<T>{
   public NoNullArrayList(int start){
     super(start);
   }
+  public boolean add(T value){
+    if (value==null){
+      throw new IllegalArgumentException("Value cannot be null");
+    }
+    return super.add(value);
+  }
 }
