@@ -12,9 +12,9 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 		if (value==null){
 			throw new IllegalArgumentException("Element cannot be null");
 		}
-		for (int i=0;i<size()-1;i++){
-			if (value.compareTo(get(i))>=0&&value.compareTo(get(i+1))<=0){
-				return i+1;
+		for (int i=0;i<size();i++){
+			if (value.compareTo(get(i))<0){
+				return i;
 			}
 		}
 		return size();
@@ -29,8 +29,9 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 		super.add(index2,value);
 	}
 	public T set(int index, T value){
+		int index2=findIndex(value);
 		T old=remove(index);
-		add(value);
+		add(index2, value);
 		return old;
 	}
 }
